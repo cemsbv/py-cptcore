@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reference &mdash; py-cptcore 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/index.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Installing py-cptcore" href="getting_started.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            py-cptcore
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Installing py-cptcore</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html#how-to-import-py-pilecore">How to import py-pilecore</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pycptcore.main.SoilProperties"><code class="docutils literal notranslate"><span class="pre">SoilProperties</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pycptcore.main.SoilProperties.from_api_response"><code class="docutils literal notranslate"><span class="pre">SoilProperties.from_api_response()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pycptcore.main.SoilProperties.plot"><code class="docutils literal notranslate"><span class="pre">SoilProperties.plot()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#pycptcore.main.LayerTable"><code class="docutils literal notranslate"><span class="pre">LayerTable</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pycptcore.main.LayerTable.from_api_response"><code class="docutils literal notranslate"><span class="pre">LayerTable.from_api_response()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pycptcore.main.LayerTable.dataframe"><code class="docutils literal notranslate"><span class="pre">LayerTable.dataframe</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pycptcore.main.LayerTable.plot"><code class="docutils literal notranslate"><span class="pre">LayerTable.plot()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">py-cptcore</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tree/reference.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="reference">
+<h1>Reference<a class="headerlink" href="#reference" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycptcore.main.SoilProperties">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pycptcore.main.</span></span><span class="sig-name descname"><span class="pre">SoilProperties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cpt_table</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_table</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verticalPositionReferencePoint</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verticalPositionOffset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">predrilledDepth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">groundwaterLevel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycptcore/main.html#SoilProperties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycptcore.main.SoilProperties" title="Permalink to this definition"></a></dt>
+<dd><p>A class for soil properties.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycptcore.main.SoilProperties.from_api_response">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_api_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">response_parse</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">response_classify</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycptcore/main.html#SoilProperties.from_api_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycptcore.main.SoilProperties.from_api_response" title="Permalink to this definition"></a></dt>
+<dd><p>Stores the response of the CPTCore endpoint</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>response_parse</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>) – The resulting response of a call to <cite>parse()</cite></p></li>
+<li><p><strong>response_classify</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>) – The resulting response of a call to <cite>classify()</cite></p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#pycptcore.main.SoilProperties" title="pycptcore.main.SoilProperties"><code class="xref py py-class docutils literal notranslate"><span class="pre">SoilProperties</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycptcore.main.SoilProperties.plot">
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(10.0,</span> <span class="pre">12.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width_ratios</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1.0,</span> <span class="pre">0.1)</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycptcore/main.html#SoilProperties.plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycptcore.main.SoilProperties.plot" title="Permalink to this definition"></a></dt>
+<dd><p>Plots the CPT and soil table data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>figsize</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – Size of the activate figure, as the <cite>plt.figure()</cite> argument.</p></li>
+<li><p><strong>width_ratios</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – Tuple of width-ratios of the subplots, as the <cite>plt.GridSpec</cite> argument.</p></li>
+<li><p><strong>**kwargs</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>) – All additional keyword arguments are passed to the <cite>pyplot.subplots()</cite> call.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The matplotlib Figure</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>fig</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pycptcore.main.LayerTable">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pycptcore.main.</span></span><span class="sig-name descname"><span class="pre">LayerTable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geotechnicalSoilName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lowerBoundary</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upperBoundary</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mainComponent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cohesion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma_sat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma_unsat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">undrainedShearStrength</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycptcore/main.html#LayerTable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycptcore.main.LayerTable" title="Permalink to this definition"></a></dt>
+<dd><p>Object that contains the Soil-layer data-traces.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycptcore.main.LayerTable.from_api_response">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_api_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">response_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycptcore/main.html#LayerTable.from_api_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycptcore.main.LayerTable.from_api_response" title="Permalink to this definition"></a></dt>
+<dd><p>Stores the response of the CPTCore endpoint</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>response_dict</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>) – The resulting response of a call to <cite>classify()</cite></p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#pycptcore.main.LayerTable" title="pycptcore.main.LayerTable"><code class="xref py py-class docutils literal notranslate"><span class="pre">LayerTable</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pycptcore.main.LayerTable.dataframe">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dataframe</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">DataFrame</span></em><a class="headerlink" href="#pycptcore.main.LayerTable.dataframe" title="Permalink to this definition"></a></dt>
+<dd><p>The pandas.DataFrame representation</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycptcore.main.LayerTable.plot">
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycptcore/main.html#LayerTable.plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycptcore.main.LayerTable.plot" title="Permalink to this definition"></a></dt>
+<dd><p>Plot the soil-layer in a subplot</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>axes</strong> (<em>plt.Axes</em><em> | </em><em>None</em>) – <cite>plt.Axes</cite> object where the data can be plotted on.</p></li>
+<li><p><strong>offset</strong> (<em>float</em>) – offset sue to plot upper and lower boundary of the soil layer</p></li>
+<li><p><strong>**kwargs</strong> (<em>Any</em>) – All additional keyword arguments are passed to the <cite>pyplot.subplots()</cite> call.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="getting_started.html" class="btn btn-neutral float-left" title="Installing py-cptcore" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, CEMS BV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
