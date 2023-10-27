@@ -130,7 +130,7 @@ pycodestyle==2.10.0
     # via
     #   flake8
     #   py-cptcore (pyproject.toml)
-pyflakes==3.0.1
+pyflakes==3.1.0
     # via
     #   flake8
     #   py-cptcore (pyproject.toml)
