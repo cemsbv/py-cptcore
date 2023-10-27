@@ -14,7 +14,7 @@ babel==2.13.1
     # via sphinx
 backcall==0.2.0
     # via ipython
-black==23.3.0
+black==23.10.1
     # via py-cptcore (pyproject.toml)
 certifi==2023.7.22
     # via requests
