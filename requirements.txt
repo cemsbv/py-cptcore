@@ -142,7 +142,7 @@ packaging==23.2
     #   py-pilecore (pyproject.toml)
     #   pytest
     #   sphinx
-pandas==2.1.1
+pandas==2.1.2
     # via
     #   cems-nuclei
     #   geopandas
