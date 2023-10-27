@@ -272,7 +272,7 @@ traitlets==5.12.0
     #   matplotlib-inline
 types-pytz==2023.3.1.1
     # via pandas-stubs
-types-tqdm==4.66.0.2
+types-tqdm==4.66.0.3
     # via py-pilecore (pyproject.toml)
 typing-extensions==4.7.1
     # via
