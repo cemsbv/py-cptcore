@@ -1,7 +1,10 @@
-Welcome to py-PileCore documentation!
+Welcome to py-CPTCore documentation!
 =======================================
 
-The `py-PileCore` library is created by [CEMS BV](https://cemsbv.nl/) and is a public python wrapper around the CEMS [PileCore web-API](https://nuclei.cemsbv.io/#/pilecore/api).
+The `py-CPTCore` library is created by `CEMS BV <https://cemsbv.nl/>`_ and is a public
+python wrapper around the CEMS `CPTCore web-API <https://nuclei.cemsbv.io/#/cptcore/api>`_.
+
+
 
 Indices and tables
 ==================

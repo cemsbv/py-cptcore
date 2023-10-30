@@ -20,7 +20,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Reference" href="reference.html" />
-    <link rel="prev" title="Welcome to py-PileCore documentation!" href="../index.html" /> 
+    <link rel="prev" title="Welcome to py-CPTCore documentation!" href="../index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,7 +45,8 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installing py-cptcore</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#how-to-import-py-pilecore">How to import py-pilecore</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#how-to-import-py-cptcore">How to import py-cptcore</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#how-to-initialize-class">How to initialize class</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reference.html">Reference</a></li>
 </ul>
 
@@ -81,20 +82,61 @@ You can install <code class="code docutils literal notranslate"><span class="pre
 </pre></div>
 </div>
 </section>
-<section id="how-to-import-py-pilecore">
-<h1>How to import py-pilecore<a class="headerlink" href="#how-to-import-py-pilecore" title="Permalink to this heading"></a></h1>
+<section id="how-to-import-py-cptcore">
+<h1>How to import py-cptcore<a class="headerlink" href="#how-to-import-py-cptcore" title="Permalink to this heading"></a></h1>
 <p>Getting started with pycptcore is easy done by importing the <code class="code docutils literal notranslate"><span class="pre">pycptcore</span></code> library:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">import</span> <span class="nn">pycptcore</span>
 </pre></div>
 </div>
 <p>or any equivalent <code class="code docutils literal notranslate"><span class="pre">import</span></code> statement.</p>
 </section>
+<section id="how-to-initialize-class">
+<h1>How to initialize class<a class="headerlink" href="#how-to-initialize-class" title="Permalink to this heading"></a></h1>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="go"># create object</span>
+<span class="gp">In [2]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">pycptcore</span><span class="o">.</span><span class="n">SoilProperties</span><span class="o">.</span><span class="n">from_api_response</span><span class="p">(</span>
+<span class="gp">   ...: </span>    <span class="n">response_parse</span><span class="p">,</span> <span class="n">response_classify</span>
+<span class="gp">   ...: </span><span class="p">)</span>
+<span class="gp">   ...: </span>
+
+<span class="gp">In [3]: </span><span class="n">fig</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+
+<span class="gp">In [4]: </span><span class="n">result</span><span class="o">.</span><span class="n">layer_table</span><span class="o">.</span><span class="n">dataframe</span>
+<span class="gh">Out[4]: </span>
+<span class="go">     geotechnicalSoilName  lowerBoundary  ...   phi undrainedShearStrength</span>
+<span class="go">0                    zand           2.91  ...  30.0                      0</span>
+<span class="go">1              kleiigVeen           3.51  ...  15.0                     20</span>
+<span class="go">2                    veen           4.01  ...  15.0                     20</span>
+<span class="go">3              kleiigVeen           4.91  ...  15.0                     20</span>
+<span class="go">4                    veen           5.81  ...  15.0                     20</span>
+<span class="go">5                    klei           8.31  ...  30.0                     15</span>
+<span class="go">6                    zand          10.21  ...  30.0                      0</span>
+<span class="go">7          zwakZandigSilt          10.61  ...  27.5                     15</span>
+<span class="go">8                    veen          11.71  ...  15.0                     20</span>
+<span class="go">9                    klei          12.81  ...  30.0                     15</span>
+<span class="go">10         zwakZandigSilt          13.21  ...  27.5                     15</span>
+<span class="go">11                   zand          14.01  ...  30.0                      0</span>
+<span class="go">12  zand; zwakGrindigZand          14.91  ...  35.0                      0</span>
+<span class="go">13                   zand          15.81  ...  30.0                      0</span>
+<span class="go">14         zwakZandigSilt          17.21  ...  27.5                     15</span>
+<span class="go">15                   zand          21.01  ...  30.0                      0</span>
+<span class="go">16  zand; zwakGrindigZand          23.41  ...  35.0                      0</span>
+<span class="go">17                   zand          26.01  ...  30.0                      0</span>
+<span class="go">18         zwakZandigSilt          29.21  ...  27.5                     15</span>
+<span class="go">19                   zand          30.41  ...  30.0                      0</span>
+<span class="go">20         zwakZandigSilt          32.51  ...  27.5                     15</span>
+<span class="go">21                   zand          35.92  ...  30.0                      0</span>
+
+<span class="go">[22 rows x 10 columns]</span>
+</pre></div>
+</div>
+<img alt="../_images/cpt_classify.png" src="../_images/cpt_classify.png" />
+</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../index.html" class="btn btn-neutral float-left" title="Welcome to py-PileCore documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../index.html" class="btn btn-neutral float-left" title="Welcome to py-CPTCore documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="reference.html" class="btn btn-neutral float-right" title="Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

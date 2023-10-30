@@ -12,7 +12,7 @@ Reference
     :inherited-members:
     :member-order: bysource
 
-.. autoclass:: pypilecore.main.CPTTable
+.. autoclass:: pycptcore.main.CPTTable
     :members:
     :inherited-members:
     :member-order: bysource

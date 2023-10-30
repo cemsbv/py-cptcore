@@ -44,7 +44,8 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Installing py-cptcore</a></li>
-<li class="toctree-l1"><a class="reference internal" href="getting_started.html#how-to-import-py-pilecore">How to import py-pilecore</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html#how-to-import-py-cptcore">How to import py-cptcore</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html#how-to-initialize-class">How to initialize class</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#pycptcore.main.SoilProperties"><code class="docutils literal notranslate"><span class="pre">SoilProperties</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#pycptcore.main.SoilProperties.from_api_response"><code class="docutils literal notranslate"><span class="pre">SoilProperties.from_api_response()</span></code></a></li>
@@ -55,6 +56,14 @@
 <li class="toctree-l3"><a class="reference internal" href="#pycptcore.main.LayerTable.from_api_response"><code class="docutils literal notranslate"><span class="pre">LayerTable.from_api_response()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pycptcore.main.LayerTable.dataframe"><code class="docutils literal notranslate"><span class="pre">LayerTable.dataframe</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pycptcore.main.LayerTable.plot"><code class="docutils literal notranslate"><span class="pre">LayerTable.plot()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#pycptcore.main.CPTTable"><code class="docutils literal notranslate"><span class="pre">CPTTable</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pycptcore.main.CPTTable.from_api_response"><code class="docutils literal notranslate"><span class="pre">CPTTable.from_api_response()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pycptcore.main.CPTTable.dataframe"><code class="docutils literal notranslate"><span class="pre">CPTTable.dataframe</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pycptcore.main.CPTTable.plot_cone_resistance"><code class="docutils literal notranslate"><span class="pre">CPTTable.plot_cone_resistance()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pycptcore.main.CPTTable.plot_local_friction"><code class="docutils literal notranslate"><span class="pre">CPTTable.plot_local_friction()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pycptcore.main.CPTTable.plot_friction_ratio"><code class="docutils literal notranslate"><span class="pre">CPTTable.plot_friction_ratio()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -91,6 +100,26 @@
 <dt class="sig sig-object py" id="pycptcore.main.SoilProperties">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pycptcore.main.</span></span><span class="sig-name descname"><span class="pre">SoilProperties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cpt_table</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_table</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verticalPositionReferencePoint</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verticalPositionOffset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">predrilledDepth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">groundwaterLevel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycptcore/main.html#SoilProperties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycptcore.main.SoilProperties" title="Permalink to this definition"></a></dt>
 <dd><p>A class for soil properties.</p>
+<section id="attributes">
+<h2>Attributes:<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h2>
+<dl class="simple">
+<dt>cpt_table: CPTTable</dt><dd><p>CPT object</p>
+</dd>
+<dt>layer_table: LayerTable</dt><dd><p>layer table object</p>
+</dd>
+<dt>location: Location</dt><dd><p>spatial object</p>
+</dd>
+<dt>verticalPositionReferencePoint: str</dt><dd><p>vertical position reference point</p>
+</dd>
+<dt>verticalPositionOffset: float</dt><dd><p>vertical position offset [m w.r.t. reference]</p>
+</dd>
+<dt>predrilledDepth: float</dt><dd><p>predrilled depth [m]</p>
+</dd>
+<dt>label: str</dt><dd><p>CPT name</p>
+</dd>
+<dt>groundwaterLevel: float</dt><dd><p>groundwater level [m]</p>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="pycptcore.main.SoilProperties.from_api_response">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_api_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">response_parse</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">response_classify</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycptcore/main.html#SoilProperties.from_api_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycptcore.main.SoilProperties.from_api_response" title="Permalink to this definition"></a></dt>
@@ -98,8 +127,8 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>response_parse</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>) – The resulting response of a call to <cite>parse()</cite></p></li>
-<li><p><strong>response_classify</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>) – The resulting response of a call to <cite>classify()</cite></p></li>
+<li><p><strong>response_parse</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>) – The resulting response of a call to <cite>cpt/parse</cite></p></li>
+<li><p><strong>response_classify</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>) – The resulting response of a call to <cite>classify/*</cite></p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -129,19 +158,44 @@
 </dl>
 </dd></dl>
 
+</section>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="pycptcore.main.LayerTable">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pycptcore.main.</span></span><span class="sig-name descname"><span class="pre">LayerTable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geotechnicalSoilName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lowerBoundary</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upperBoundary</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mainComponent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cohesion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma_sat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma_unsat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">undrainedShearStrength</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycptcore/main.html#LayerTable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycptcore.main.LayerTable" title="Permalink to this definition"></a></dt>
 <dd><p>Object that contains the Soil-layer data-traces.</p>
+<section id="id1">
+<h2>Attributes:<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<dl class="simple">
+<dt>geotechnicalSoilName: Sequence[str]</dt><dd><p>geotechnical Soil Name related to the ISO</p>
+</dd>
+<dt>lowerBoundary: Sequence[float]</dt><dd><p>lower boundary of the layer [m]</p>
+</dd>
+<dt>upperBoundary: Sequence[float]</dt><dd><p>upper boundary of the layer [m]</p>
+</dd>
+<dt>color: Sequence[str]</dt><dd><p>hex color code</p>
+</dd>
+<dt>mainComponent: Sequence[Literal[“rocks”, “gravel”, “sand”, “silt”, “clay”, “peat”]]</dt><dd><p>main soil component</p>
+</dd>
+<dt>cohesion: Sequence[float]</dt><dd><p>cohesion of the layer [kPa]</p>
+</dd>
+<dt>gamma_sat: Sequence[float]</dt><dd><p>Saturated unit weight [kN/m^3]</p>
+</dd>
+<dt>gamma_unsat: Sequence[float]</dt><dd><p>unsaturated unit weight [kN/m^3]</p>
+</dd>
+<dt>phi: Sequence[float]</dt><dd><p>phi [degrees]</p>
+</dd>
+<dt>undrainedShearStrength: Sequence[float]</dt><dd><p>undrained shear strength [kPa]</p>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="pycptcore.main.LayerTable.from_api_response">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_api_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">response_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycptcore/main.html#LayerTable.from_api_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycptcore.main.LayerTable.from_api_response" title="Permalink to this definition"></a></dt>
 <dd><p>Stores the response of the CPTCore endpoint</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>response_dict</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>) – The resulting response of a call to <cite>classify()</cite></p>
+<dd class="field-odd"><p><strong>response_dict</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>) – The resulting response of a call to <cite>classify/*</cite></p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#pycptcore.main.LayerTable" title="pycptcore.main.LayerTable"><code class="xref py py-class docutils literal notranslate"><span class="pre">LayerTable</span></code></a></p>
@@ -173,6 +227,102 @@
 </dl>
 </dd></dl>
 
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pycptcore.main.CPTTable">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pycptcore.main.</span></span><span class="sig-name descname"><span class="pre">CPTTable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">penetrationLength</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depthOffset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coneResistance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">localFriction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frictionRatio</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycptcore/main.html#CPTTable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycptcore.main.CPTTable" title="Permalink to this definition"></a></dt>
+<dd><p>Object that contains the CPT-related data-traces.</p>
+<section id="id2">
+<h2>Attributes:<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<dl class="simple">
+<dt>penetrationLength: Sequence[float]</dt><dd><p>CPT penetrationLength [m]</p>
+</dd>
+<dt>depthOffset: Sequence[float]</dt><dd><p>CPT depth [m w.r.t. Reference]</p>
+</dd>
+<dt>coneResistance: Sequence[float]</dt><dd><p>cone resistance [Mpa]</p>
+</dd>
+<dt>localFriction: Sequence[float]</dt><dd><p>local friction [Mpa]</p>
+</dd>
+<dt>frictionRatio: Sequence[float]</dt><dd><p>friction ratio [-]</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycptcore.main.CPTTable.from_api_response">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_api_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">response_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycptcore/main.html#CPTTable.from_api_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycptcore.main.CPTTable.from_api_response" title="Permalink to this definition"></a></dt>
+<dd><p>Stores the response of the CPTCore endpoint</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>response_dict</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>) – The resulting response of a call to <cite>cpt/parse</cite></p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#pycptcore.main.CPTTable" title="pycptcore.main.CPTTable"><code class="xref py py-class docutils literal notranslate"><span class="pre">CPTTable</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pycptcore.main.CPTTable.dataframe">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dataframe</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">DataFrame</span></em><a class="headerlink" href="#pycptcore.main.CPTTable.dataframe" title="Permalink to this definition"></a></dt>
+<dd><p>The pandas.DataFrame representation</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycptcore.main.CPTTable.plot_cone_resistance">
+<span class="sig-name descname"><span class="pre">plot_cone_resistance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycptcore/main.html#CPTTable.plot_cone_resistance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycptcore.main.CPTTable.plot_cone_resistance" title="Permalink to this definition"></a></dt>
+<dd><p>Plots the cone resistance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>axes</strong> (<em>Axes</em><em> | </em><em>None</em>) – Optional Axes to plot on.</p></li>
+<li><p><strong>offset</strong> (<em>float</em>) – offset used to plot depth</p></li>
+<li><p><strong>**kwargs</strong> (<em>Any</em>) – All additional keyword arguments are passed to the <cite>pyplot.subplots()</cite> call.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycptcore.main.CPTTable.plot_local_friction">
+<span class="sig-name descname"><span class="pre">plot_local_friction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycptcore/main.html#CPTTable.plot_local_friction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycptcore.main.CPTTable.plot_local_friction" title="Permalink to this definition"></a></dt>
+<dd><p>Plots the local-friction data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>axes</strong> (<em>Axes</em><em> | </em><em>None</em>) – Optional Axes to plot on.</p></li>
+<li><p><strong>offset</strong> (<em>float</em>) – offset used to plot depth</p></li>
+<li><p><strong>**kwargs</strong> (<em>Any</em>) – All additional keyword arguments are passed to the <cite>pyplot.subplots()</cite> call.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycptcore.main.CPTTable.plot_friction_ratio">
+<span class="sig-name descname"><span class="pre">plot_friction_ratio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycptcore/main.html#CPTTable.plot_friction_ratio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycptcore.main.CPTTable.plot_friction_ratio" title="Permalink to this definition"></a></dt>
+<dd><p>Plots the friction-ratio data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>axes</strong> (<em>Axes</em><em> | </em><em>None</em>) – Optional Axes to plot on.</p></li>
+<li><p><strong>offset</strong> (<em>float</em>) – offset used to plot depth</p></li>
+<li><p><strong>**kwargs</strong> (<em>Any</em>) – All additional keyword arguments are passed to the <cite>pyplot.subplots()</cite> call.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
 </dd></dl>
 
 </section>
