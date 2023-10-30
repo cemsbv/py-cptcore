@@ -20,6 +20,7 @@ parts/
 sdist/
 var/
 wheels/
+.idea/
 share/python-wheels/
 *.egg-info/
 .installed.cfg
@@ -70,6 +71,8 @@ instance/
 
 # Sphinx documentation
 docs/_build/
+public/
+/docs/savefig/*
 
 # PyBuilder
 .pybuilder/
@@ -162,3 +165,7 @@ cython_debug/
 
 # VS-Code
 .vscode
+
+# Other
+/fig.png
+/tmp.*
