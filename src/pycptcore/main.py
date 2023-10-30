@@ -38,6 +38,29 @@ class Location:
 class LayerTable:
     """
     Object that contains the Soil-layer data-traces.
+
+    Attributes:
+    ------------
+    geotechnicalSoilName: Sequence[str]
+        geotechnical Soil Name related to the ISO
+    lowerBoundary: Sequence[float]
+        lower boundary of the layer [m]
+    upperBoundary: Sequence[float]
+        upper boundary of the layer [m]
+    color: Sequence[str]
+        hex color code
+    mainComponent: Sequence[Literal["rocks", "gravel", "sand", "silt", "clay", "peat"]]
+        main soil component
+    cohesion: Sequence[float]
+        cohesion of the layer [kPa]
+    gamma_sat: Sequence[float]
+        Saturated unit weight [kN/m^3]
+    gamma_unsat: Sequence[float]
+        unsaturated unit weight [kN/m^3]
+    phi: Sequence[float]
+        phi [degrees]
+    undrainedShearStrength: Sequence[float]
+        undrained shear strength [kPa]
     """
 
     geotechnicalSoilName: Sequence[str]
@@ -64,25 +87,25 @@ class LayerTable:
         Parameters
         ----------
         response_dict:
-           The resulting response of a call to `classify()`
+           The resulting response of a call to `classify/*`
         """
         return cls(
-            geotechnicalSoilName=response_dict.get("geotechnicalSoilName"),
-            lowerBoundary=response_dict.get("lowerBoundary"),
-            upperBoundary=response_dict.get("upperBoundary"),
-            color=response_dict.get("color"),
-            mainComponent=response_dict.get("mainComponent"),
-            cohesion=response_dict.get("cohesion"),
-            gamma_sat=response_dict.get("gamma_sat"),
-            gamma_unsat=response_dict.get("gamma_unsat"),
-            phi=response_dict.get("phi"),
-            undrainedShearStrength=response_dict.get("undrainedShearStrength"),
+            geotechnicalSoilName=response_dict.get("geotechnicalSoilName"),  # type: ignore
+            lowerBoundary=response_dict.get("lowerBoundary"),  # type: ignore
+            upperBoundary=response_dict.get("upperBoundary"),  # type: ignore
+            color=response_dict.get("color"),  # type: ignore
+            mainComponent=response_dict.get("mainComponent"),  # type: ignore
+            cohesion=response_dict.get("cohesion"),  # type: ignore
+            gamma_sat=response_dict.get("gamma_sat"),  # type: ignore
+            gamma_unsat=response_dict.get("gamma_unsat"),  # type: ignore
+            phi=response_dict.get("phi"),  # type: ignore
+            undrainedShearStrength=response_dict.get("undrainedShearStrength"),  # type: ignore
         )
 
     @property
     def dataframe(self) -> pd.DataFrame:
         """The pandas.DataFrame representation"""
-        return pd.DataFrame(self.__dict__).dropna(axis="rows", how="any")
+        return pd.DataFrame(self.__dict__).dropna(axis="rows", how="any")  # type: ignore
 
     def plot(
         self, axes: plt.Axes | None = None, offset: float = 0, **kwargs: Any
@@ -108,15 +131,15 @@ class LayerTable:
 
             axes.fill_between(
                 [0, 1],
-                lower_boundary,  # type: ignore
-                upper_boundary,  # type: ignore
-                color=row["color"],  # type: ignore
+                lower_boundary,
+                upper_boundary,
+                color=row["color"],
             )
 
             # add annotate
-            y = (lower_boundary - upper_boundary) / 2 + upper_boundary  # type: ignore
+            y = (lower_boundary - upper_boundary) / 2 + upper_boundary
             axes.annotate(
-                text=row["geotechnicalSoilName"],  # type: ignore
+                text=row["geotechnicalSoilName"],
                 xy=(0.25, y),
                 fontsize=5,
             )
@@ -128,6 +151,19 @@ class LayerTable:
 class CPTTable:
     """
     Object that contains the CPT-related data-traces.
+
+    Attributes:
+    ------------
+    penetrationLength: Sequence[float]
+        CPT penetrationLength [m]
+    depthOffset: Sequence[float]
+        CPT depth [m w.r.t. Reference]
+    coneResistance: Sequence[float]
+        cone resistance [Mpa]
+    localFriction: Sequence[float]
+        local friction [Mpa]
+    frictionRatio: Sequence[float]
+        friction ratio [-]
     """
 
     penetrationLength: Sequence[float]
@@ -149,15 +185,15 @@ class CPTTable:
         Parameters
         ----------
         response_dict:
-           The resulting response of a call to `parse()`
+           The resulting response of a call to `cpt/parse`
         """
         return cls(
             penetrationLength=response_dict.get(
                 "depth", response_dict.get("penetrationLength")
             ),
-            depthOffset=response_dict.get("depthOffset"),
-            coneResistance=response_dict.get("coneResistance"),
-            localFriction=response_dict.get("localFriction"),
+            depthOffset=response_dict.get("depthOffset"),  # type: ignore
+            coneResistance=response_dict.get("coneResistance"),  # type: ignore
+            localFriction=response_dict.get("localFriction"),  # type: ignore
             frictionRatio=response_dict.get(
                 "frictionRatio", response_dict.get("frictionRatioComputed")
             ),
@@ -166,7 +202,7 @@ class CPTTable:
     @property
     def dataframe(self) -> pd.DataFrame:
         """The pandas.DataFrame representation"""
-        return pd.DataFrame(self.__dict__).dropna(axis="rows", how="any")
+        return pd.DataFrame(self.__dict__).dropna(axis="rows", how="any")  # type: ignore
 
     def plot_cone_resistance(
         self,
@@ -287,6 +323,25 @@ class CPTTable:
 class SoilProperties:
     """
     A class for soil properties.
+
+    Attributes:
+    ------------
+    cpt_table: CPTTable
+        CPT object
+    layer_table: LayerTable
+        layer table object
+    location: Location
+        spatial object
+    verticalPositionReferencePoint: str
+        vertical position reference point
+    verticalPositionOffset: float
+        vertical position offset [m w.r.t. reference]
+    predrilledDepth: float
+        predrilled depth [m]
+    label: str
+        CPT name
+    groundwaterLevel: float
+        groundwater level [m]
     """
 
     cpt_table: CPTTable
@@ -294,9 +349,9 @@ class SoilProperties:
     location: Location
     verticalPositionReferencePoint: str
     verticalPositionOffset: float
-    predrilledDepth: float
+    predrilledDepth: float | None
     label: str
-    groundwaterLevel: float
+    groundwaterLevel: float | None
 
     @classmethod
     def from_api_response(
@@ -308,9 +363,9 @@ class SoilProperties:
         Parameters
         ----------
         response_parse:
-           The resulting response of a call to `parse()`
+           The resulting response of a call to `cpt/parse`
         response_classify:
-           The resulting response of a call to `classify()`
+           The resulting response of a call to `classify/*`
         """
         location = response_parse.get("location", {})
 
@@ -323,11 +378,11 @@ class SoilProperties:
                 srs_name=location.get("srs"),
             ),
             verticalPositionReferencePoint=response_parse.get(
-                "verticalPositionReferencePoint"
+                "verticalPositionReferencePoint", "Unknown"
             ),
-            verticalPositionOffset=response_parse.get("verticalPositionOffset"),
+            verticalPositionOffset=response_parse.get("verticalPositionOffset", 0),
             predrilledDepth=response_parse.get("predrilledDepth"),
-            label=response_parse.get("label"),
+            label=response_parse.get("label", "Unknown"),
             groundwaterLevel=response_parse.get("groundwaterLevel"),
         )
 
