@@ -169,11 +169,14 @@ class CPTTable:
     penetrationLength: Sequence[float]
     depthOffset: Sequence[float]
     coneResistance: Sequence[float]
-    localFriction: Sequence[float]
-    frictionRatio: Sequence[float]
+    localFriction: Sequence[float] | None
+    frictionRatio: Sequence[float] | None
 
     def __post_init__(self) -> None:
-        raw_lengths = [len(values) for values in self.__dict__.values()]
+        raw_lengths = []
+        for values in self.__dict__.values():
+            if values:
+                raw_lengths.append(len(values))
         if len(list(set(raw_lengths))) > 1:
             raise ValueError("All values in this dataclass must have the same length.")
 
@@ -193,7 +196,7 @@ class CPTTable:
             ),
             depthOffset=response_dict.get("depthOffset"),  # type: ignore
             coneResistance=response_dict.get("coneResistance"),  # type: ignore
-            localFriction=response_dict.get("localFriction"),  # type: ignore
+            localFriction=response_dict.get("localFriction"),
             frictionRatio=response_dict.get(
                 "frictionRatio", response_dict.get("frictionRatioComputed")
             ),
