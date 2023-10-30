@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.0.3] - 2023-10-30
+
+### Features
+
+- Make localFriction and frictionRatio optional
+- Make layer_table optional
+
 ## [0.0.2] - 2023-10-30
 
 ### Miscellaneous Tasks
