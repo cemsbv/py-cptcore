@@ -419,7 +419,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">cpt_table</span><span class="p">:</span> <span class="n">CPTTable</span>
-    <span class="n">layer_table</span><span class="p">:</span> <span class="n">LayerTable</span>
+    <span class="n">layer_table</span><span class="p">:</span> <span class="n">LayerTable</span> <span class="o">|</span> <span class="kc">None</span>
     <span class="n">location</span><span class="p">:</span> <span class="n">Location</span>
     <span class="n">verticalPositionReferencePoint</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">verticalPositionOffset</span><span class="p">:</span> <span class="nb">float</span>
@@ -429,7 +429,7 @@
 
 <div class="viewcode-block" id="SoilProperties.from_api_response"><a class="viewcode-back" href="../../tree/reference.html#pycptcore.main.SoilProperties.from_api_response">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_api_response</span><span class="p">(</span>
-        <span class="bp">cls</span><span class="p">,</span> <span class="n">response_parse</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">response_classify</span><span class="p">:</span> <span class="nb">dict</span>
+        <span class="bp">cls</span><span class="p">,</span> <span class="n">response_parse</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">response_classify</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SoilProperties&quot;</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Stores the response of the CPTCore endpoint</span>
@@ -445,7 +445,9 @@
 
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
             <span class="n">cpt_table</span><span class="o">=</span><span class="n">CPTTable</span><span class="o">.</span><span class="n">from_api_response</span><span class="p">(</span><span class="n">response_parse</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="p">{})),</span>
-            <span class="n">layer_table</span><span class="o">=</span><span class="n">LayerTable</span><span class="o">.</span><span class="n">from_api_response</span><span class="p">(</span><span class="n">response_classify</span><span class="p">),</span>
+            <span class="n">layer_table</span><span class="o">=</span><span class="n">LayerTable</span><span class="o">.</span><span class="n">from_api_response</span><span class="p">(</span><span class="n">response_classify</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">response_classify</span>
+            <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">location</span><span class="o">=</span><span class="n">Location</span><span class="p">(</span>
                 <span class="n">lat</span><span class="o">=</span><span class="n">location</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;lat&quot;</span><span class="p">),</span>
                 <span class="n">long</span><span class="o">=</span><span class="n">location</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;long&quot;</span><span class="p">),</span>
@@ -459,6 +461,12 @@
             <span class="n">label</span><span class="o">=</span><span class="n">response_parse</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;Unknown&quot;</span><span class="p">),</span>
             <span class="n">groundwaterLevel</span><span class="o">=</span><span class="n">response_parse</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;groundwaterLevel&quot;</span><span class="p">),</span>
         <span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">set_layer_table_from_api_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response_classify</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># bypass FrozenInstanceError</span>
+        <span class="nb">object</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;layer_table&quot;</span><span class="p">,</span> <span class="n">LayerTable</span><span class="o">.</span><span class="n">from_api_response</span><span class="p">(</span><span class="n">response_classify</span><span class="p">)</span>
+        <span class="p">)</span>
 
 <div class="viewcode-block" id="SoilProperties.plot"><a class="viewcode-back" href="../../tree/reference.html#pycptcore.main.SoilProperties.plot">[docs]</a>    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -534,7 +542,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">cpt_table</span><span class="o">.</span><span class="n">plot_cone_resistance</span><span class="p">(</span><span class="n">ax_qc</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verticalPositionOffset</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cpt_table</span><span class="o">.</span><span class="n">plot_local_friction</span><span class="p">(</span><span class="n">ax_fs</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verticalPositionOffset</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cpt_table</span><span class="o">.</span><span class="n">plot_friction_ratio</span><span class="p">(</span><span class="n">ax_rf</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verticalPositionOffset</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">layer_table</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">axes</span><span class="o">=</span><span class="n">ax_layers</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verticalPositionOffset</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_table</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">layer_table</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">axes</span><span class="o">=</span><span class="n">ax_layers</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verticalPositionOffset</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">fig</span></div></div>
 </pre></div>
