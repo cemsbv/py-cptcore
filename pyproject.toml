@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "py-cptcore"
-version = "0.0.1"
+version = "0.0.2"
 description = "Public python SDK for the CEMS CPTCore web-API."
 requires-python = ">=3.9"
 dependencies = [
