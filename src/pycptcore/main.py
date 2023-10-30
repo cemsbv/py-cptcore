@@ -345,7 +345,7 @@ class SoilProperties:
     """
 
     cpt_table: CPTTable
-    layer_table: LayerTable
+    layer_table: LayerTable | None
     location: Location
     verticalPositionReferencePoint: str
     verticalPositionOffset: float
@@ -355,7 +355,7 @@ class SoilProperties:
 
     @classmethod
     def from_api_response(
-        cls, response_parse: dict, response_classify: dict
+        cls, response_parse: dict, response_classify: dict | None = None
     ) -> "SoilProperties":
         """
         Stores the response of the CPTCore endpoint
@@ -371,7 +371,9 @@ class SoilProperties:
 
         return cls(
             cpt_table=CPTTable.from_api_response(response_parse.get("data", {})),
-            layer_table=LayerTable.from_api_response(response_classify),
+            layer_table=LayerTable.from_api_response(response_classify)
+            if response_classify
+            else None,
             location=Location(
                 lat=location.get("lat"),
                 long=location.get("long"),
@@ -384,6 +386,12 @@ class SoilProperties:
             predrilledDepth=response_parse.get("predrilledDepth"),
             label=response_parse.get("label", "Unknown"),
             groundwaterLevel=response_parse.get("groundwaterLevel"),
+        )
+
+    def set_layer_table_from_api_response(self, response_classify: dict) -> None:
+        # bypass FrozenInstanceError
+        object.__setattr__(
+            self, "layer_table", LayerTable.from_api_response(response_classify)
         )
 
     def plot(
@@ -460,6 +468,8 @@ class SoilProperties:
         self.cpt_table.plot_cone_resistance(ax_qc, offset=self.verticalPositionOffset)
         self.cpt_table.plot_local_friction(ax_fs, offset=self.verticalPositionOffset)
         self.cpt_table.plot_friction_ratio(ax_rf, offset=self.verticalPositionOffset)
-        self.layer_table.plot(axes=ax_layers, offset=self.verticalPositionOffset)
+
+        if self.layer_table:
+            self.layer_table.plot(axes=ax_layers, offset=self.verticalPositionOffset)
 
         return fig
