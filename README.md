@@ -77,7 +77,7 @@ Test the software with the use of coverage:
 ```bash
 python -m pip install --upgrade pip setuptools
 pip install -r requirements.txt
-pip install .
+pip install -e .
 coverage run -m pytest
 ```
 
