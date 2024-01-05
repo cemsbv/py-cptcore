@@ -45,7 +45,7 @@ lint = [
     "flake8==6.0.0",
     "mccabe==0.7.0",
     "pycodestyle==2.10.0",
-    "pyflakes==3.0.1",
+    "pyflakes==3.2.0",
     'pandas-stubs>2,<3',
     'types-tqdm>4,<5',
 ]
