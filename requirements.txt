@@ -58,7 +58,7 @@ importlib-resources==6.1.0
     # via matplotlib
 iniconfig==2.0.0
     # via pytest
-ipython==8.11.0
+ipython==8.20.0
     # via py-cptcore (pyproject.toml)
 isort==5.12.0
     # via py-cptcore (pyproject.toml)
