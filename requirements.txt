@@ -326,7 +326,7 @@ wcwidth==0.2.13
     # via prompt-toolkit
 xmltodict==0.14.2
     # via yq
-yamllint==1.35.1
+yamllint==1.37.0
     # via
     #   py-cptcore (pyproject.toml)
     #   ansible-lint
