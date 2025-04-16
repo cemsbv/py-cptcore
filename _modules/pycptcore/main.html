@@ -1,20 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>pycptcore.main &mdash; py-cptcore 0.0.3 documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/index.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/index.css?v=6c0e5716" />
+
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=47de8214"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -72,25 +74,25 @@
            <div itemprop="articleBody">
              
   <h1>Source code for pycptcore.main</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
 
-<span class="kn">import</span> <span class="nn">matplotlib.ticker</span> <span class="k">as</span> <span class="nn">plticker</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">from</span> <span class="nn">matplotlib.axes</span> <span class="kn">import</span> <span class="n">Axes</span>
-<span class="kn">from</span> <span class="nn">matplotlib.figure</span> <span class="kn">import</span> <span class="n">Figure</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.ticker</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plticker</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.axes</span><span class="w"> </span><span class="kn">import</span> <span class="n">Axes</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.figure</span><span class="w"> </span><span class="kn">import</span> <span class="n">Figure</span>
 
 <span class="n">Number</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span>
 <span class="n">TickLoc</span> <span class="o">=</span> <span class="n">plticker</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 
 
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">Location</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Location</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;DataClass that holds the standardized location information&quot;&quot;&quot;</span>
 
     <span class="n">srs_name</span><span class="p">:</span> <span class="nb">str</span>
@@ -98,7 +100,7 @@
     <span class="n">lat</span><span class="p">:</span> <span class="nb">float</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;transform EPSG 4326 to EPSG 28992 with epsg.io&quot;&quot;&quot;</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
             <span class="sa">f</span><span class="s2">&quot;https://epsg.io/trans?s_srs=4326&amp;t_srs=28992&amp;x=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">long</span><span class="si">}</span><span class="s2">&amp;y=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">lat</span><span class="si">}</span><span class="s2">&amp;format=json&quot;</span>
@@ -108,8 +110,10 @@
         <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="LayerTable"><a class="viewcode-back" href="../../tree/reference.html#pycptcore.main.LayerTable">[docs]</a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">LayerTable</span><span class="p">:</span>
+<div class="viewcode-block" id="LayerTable">
+<a class="viewcode-back" href="../../tree/reference.html#pycptcore.main.LayerTable">[docs]</a>
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">LayerTable</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Object that contains the Soil-layer data-traces.</span>
 
@@ -148,13 +152,15 @@
     <span class="n">phi</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>
     <span class="n">undrainedShearStrength</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">raw_lengths</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="k">for</span> <span class="n">values</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">raw_lengths</span><span class="p">)))</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;All values in this dataclass must have the same length.&quot;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="LayerTable.from_api_response"><a class="viewcode-back" href="../../tree/reference.html#pycptcore.main.LayerTable.from_api_response">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">from_api_response</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">response_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;LayerTable&quot;</span><span class="p">:</span>
+<div class="viewcode-block" id="LayerTable.from_api_response">
+<a class="viewcode-back" href="../../tree/reference.html#pycptcore.main.LayerTable.from_api_response">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_api_response</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">response_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;LayerTable&quot;</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Stores the response of the CPTCore endpoint</span>
 
@@ -176,12 +182,15 @@
             <span class="n">undrainedShearStrength</span><span class="o">=</span><span class="n">response_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;undrainedShearStrength&quot;</span><span class="p">),</span>  <span class="c1"># type: ignore</span>
         <span class="p">)</span></div>
 
+
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">dataframe</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">dataframe</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The pandas.DataFrame representation&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;rows&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;any&quot;</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
 
-<div class="viewcode-block" id="LayerTable.plot"><a class="viewcode-back" href="../../tree/reference.html#pycptcore.main.LayerTable.plot">[docs]</a>    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span>
+<div class="viewcode-block" id="LayerTable.plot">
+<a class="viewcode-back" href="../../tree/reference.html#pycptcore.main.LayerTable.plot">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">axes</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">Axes</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -218,11 +227,15 @@
                 <span class="n">fontsize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="n">axes</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
-        <span class="n">axes</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([])</span></div></div>
+        <span class="n">axes</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([])</span></div>
+</div>
 
 
-<div class="viewcode-block" id="CPTTable"><a class="viewcode-back" href="../../tree/reference.html#pycptcore.main.CPTTable">[docs]</a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">CPTTable</span><span class="p">:</span>
+
+<div class="viewcode-block" id="CPTTable">
+<a class="viewcode-back" href="../../tree/reference.html#pycptcore.main.CPTTable">[docs]</a>
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">CPTTable</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Object that contains the CPT-related data-traces.</span>
 
@@ -246,7 +259,7 @@
     <span class="n">localFriction</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span>
     <span class="n">frictionRatio</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">raw_lengths</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">values</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">values</span><span class="p">:</span>
@@ -254,8 +267,10 @@
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">raw_lengths</span><span class="p">)))</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;All values in this dataclass must have the same length.&quot;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="CPTTable.from_api_response"><a class="viewcode-back" href="../../tree/reference.html#pycptcore.main.CPTTable.from_api_response">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">from_api_response</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">response_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;CPTTable&quot;</span><span class="p">:</span>
+<div class="viewcode-block" id="CPTTable.from_api_response">
+<a class="viewcode-back" href="../../tree/reference.html#pycptcore.main.CPTTable.from_api_response">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_api_response</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">response_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;CPTTable&quot;</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Stores the response of the CPTCore endpoint</span>
 
@@ -276,12 +291,15 @@
             <span class="p">),</span>
         <span class="p">)</span></div>
 
+
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">dataframe</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">dataframe</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The pandas.DataFrame representation&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;rows&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;any&quot;</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
 
-<div class="viewcode-block" id="CPTTable.plot_cone_resistance"><a class="viewcode-back" href="../../tree/reference.html#pycptcore.main.CPTTable.plot_cone_resistance">[docs]</a>    <span class="k">def</span> <span class="nf">plot_cone_resistance</span><span class="p">(</span>
+<div class="viewcode-block" id="CPTTable.plot_cone_resistance">
+<a class="viewcode-back" href="../../tree/reference.html#pycptcore.main.CPTTable.plot_cone_resistance">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_cone_resistance</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">axes</span><span class="p">:</span> <span class="n">Axes</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
@@ -318,7 +336,10 @@
             <span class="n">label</span><span class="o">=</span><span class="s2">&quot;coneResistance&quot;</span><span class="p">,</span>
         <span class="p">)</span></div>
 
-<div class="viewcode-block" id="CPTTable.plot_local_friction"><a class="viewcode-back" href="../../tree/reference.html#pycptcore.main.CPTTable.plot_local_friction">[docs]</a>    <span class="k">def</span> <span class="nf">plot_local_friction</span><span class="p">(</span>
+
+<div class="viewcode-block" id="CPTTable.plot_local_friction">
+<a class="viewcode-back" href="../../tree/reference.html#pycptcore.main.CPTTable.plot_local_friction">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_local_friction</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">axes</span><span class="p">:</span> <span class="n">Axes</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
@@ -356,7 +377,10 @@
             <span class="n">label</span><span class="o">=</span><span class="s2">&quot;localFriction&quot;</span><span class="p">,</span>
         <span class="p">)</span></div>
 
-<div class="viewcode-block" id="CPTTable.plot_friction_ratio"><a class="viewcode-back" href="../../tree/reference.html#pycptcore.main.CPTTable.plot_friction_ratio">[docs]</a>    <span class="k">def</span> <span class="nf">plot_friction_ratio</span><span class="p">(</span>
+
+<div class="viewcode-block" id="CPTTable.plot_friction_ratio">
+<a class="viewcode-back" href="../../tree/reference.html#pycptcore.main.CPTTable.plot_friction_ratio">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_friction_ratio</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">axes</span><span class="p">:</span> <span class="n">Axes</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
@@ -393,11 +417,15 @@
             <span class="p">[</span><span class="n">offset</span> <span class="o">-</span> <span class="n">value</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">penetrationLength</span><span class="p">],</span>
             <span class="n">color</span><span class="o">=</span><span class="s2">&quot;tab:gray&quot;</span><span class="p">,</span>
             <span class="n">label</span><span class="o">=</span><span class="s2">&quot;frictionRatio&quot;</span><span class="p">,</span>
-        <span class="p">)</span></div></div>
+        <span class="p">)</span></div>
+</div>
 
 
-<div class="viewcode-block" id="SoilProperties"><a class="viewcode-back" href="../../tree/reference.html#pycptcore.main.SoilProperties">[docs]</a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">SoilProperties</span><span class="p">:</span>
+
+<div class="viewcode-block" id="SoilProperties">
+<a class="viewcode-back" href="../../tree/reference.html#pycptcore.main.SoilProperties">[docs]</a>
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SoilProperties</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A class for soil properties.</span>
 
@@ -430,8 +458,10 @@
     <span class="n">label</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">groundwaterLevel</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="SoilProperties.from_api_response"><a class="viewcode-back" href="../../tree/reference.html#pycptcore.main.SoilProperties.from_api_response">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">from_api_response</span><span class="p">(</span>
+<div class="viewcode-block" id="SoilProperties.from_api_response">
+<a class="viewcode-back" href="../../tree/reference.html#pycptcore.main.SoilProperties.from_api_response">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_api_response</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span> <span class="n">response_parse</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">response_classify</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SoilProperties&quot;</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -465,13 +495,16 @@
             <span class="n">groundwaterLevel</span><span class="o">=</span><span class="n">response_parse</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;groundwaterLevel&quot;</span><span class="p">),</span>
         <span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">set_layer_table_from_api_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response_classify</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_layer_table_from_api_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response_classify</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="c1"># bypass FrozenInstanceError</span>
         <span class="nb">object</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;layer_table&quot;</span><span class="p">,</span> <span class="n">LayerTable</span><span class="o">.</span><span class="n">from_api_response</span><span class="p">(</span><span class="n">response_classify</span><span class="p">)</span>
         <span class="p">)</span>
 
-<div class="viewcode-block" id="SoilProperties.plot"><a class="viewcode-back" href="../../tree/reference.html#pycptcore.main.SoilProperties.plot">[docs]</a>    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span>
+<div class="viewcode-block" id="SoilProperties.plot">
+<a class="viewcode-back" href="../../tree/reference.html#pycptcore.main.SoilProperties.plot">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">figsize</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">12.0</span><span class="p">),</span>
         <span class="n">width_ratios</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span>
@@ -549,7 +582,9 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_table</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">layer_table</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">axes</span><span class="o">=</span><span class="n">ax_layers</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verticalPositionOffset</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">fig</span></div></div>
+        <span class="k">return</span> <span class="n">fig</span></div>
+</div>
+
 </pre></div>
 
            </div>
