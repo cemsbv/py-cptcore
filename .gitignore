@@ -169,3 +169,4 @@ cython_debug/
 # Other
 /fig.png
 /tmp.*
+.cemsdev/
