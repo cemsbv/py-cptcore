@@ -62,7 +62,7 @@ coverage==7.8.0
     # via coveralls
 coveralls==4.0.1
     # via py-cptcore (pyproject.toml)
-cpplint==2.0.0
+cpplint==2.0.2
     # via py-cptcore (pyproject.toml)
 cryptography==44.0.2
     # via ansible-core
