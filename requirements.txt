@@ -148,7 +148,7 @@ numpy==2.2.4
     #   contourpy
     #   matplotlib
     #   pandas
-packaging==24.2
+packaging==25.0
     # via
     #   ansible-compat
     #   ansible-core
