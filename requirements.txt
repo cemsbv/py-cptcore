@@ -64,7 +64,7 @@ coveralls==4.0.1
     # via py-cptcore (pyproject.toml)
 cpplint==2.0.0
     # via py-cptcore (pyproject.toml)
-cryptography==44.0.2
+cryptography==45.0.7
     # via ansible-core
 cycler==0.12.1
     # via matplotlib
