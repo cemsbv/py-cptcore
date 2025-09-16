@@ -40,7 +40,7 @@ bracex==2.5.post1
     # via wcmatch
 certifi==2025.1.31
     # via requests
-cffi==1.17.1
+cffi==2.0.0
     # via cryptography
 cfn-lint==1.25.1
     # via py-cptcore (pyproject.toml)
