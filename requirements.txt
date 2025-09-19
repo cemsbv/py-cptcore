@@ -228,7 +228,7 @@ referencing==0.36.2
     #   ansible-lint
     #   jsonschema
     #   jsonschema-specifications
-regex==2024.11.6
+regex==2025.9.18
     # via
     #   cfn-lint
     #   sqlfluff
