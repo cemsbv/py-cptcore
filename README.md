@@ -99,5 +99,5 @@ uv pip compile --python-version 3.13 --extra=test --extra=docs --extra=gui --out
 Update the requirements within the defined ranges with:
 
 ```bash
-uv pip compile --python-version 3.13 --upgrade --extra=test --extra=gui --output-file=requirements.txt pyproject.toml
+uv pip compile --python-version 3.13 --upgrade --extra=test --extra=gui --extra=docs --output-file=requirements.txt pyproject.toml
 ```
