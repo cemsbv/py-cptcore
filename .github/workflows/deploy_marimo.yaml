@@ -1,20 +1,23 @@
-name: deploy docs
-
-on:
-  push:
-    branches:
-      - main
+name: deploy marimo
 
 permissions: read-all
 
 env:
   UV_SYSTEM_PYTHON: 1
 
+on:
+  push:
+    branches:
+      - main
 jobs:
-  deploy_docs:
-    name: Deploy docs
+  deploy_app:
+    name: Deploy app
     runs-on: ubuntu-latest
     permissions: write-all
+    strategy:
+      matrix:
+        folder:
+          - "sample"
     steps:
       - uses: actions/checkout@v4
 
@@ -29,14 +32,14 @@ jobs:
       - name: Install dependencies
         run: |
           uv pip install -r requirements.txt
-          uv pip install .
 
-      - name: Build docs
-        run: sphinx-build -b html docs public
+      - name: 📄 Export notebook
+        run: |
+          marimo export html-wasm marimo/${{ matrix.folder }}/app.py -o public --mode edit
 
-      - name: Publish docs
+      - name: Publish app
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-          destination_dir: ./docs
+          destination_dir: ./marimo/${{ matrix.folder }}

@@ -11,6 +11,11 @@ on:
       - "**.md"
   workflow_call:
 
+permissions: read-all
+
+env:
+  UV_SYSTEM_PYTHON: 1
+
 jobs:
   test:
     name: Unit test
@@ -18,11 +23,16 @@ jobs:
     strategy:
       matrix:
         python-version:
+          - "3.9"
+          - "3.10"
           - "3.11"
           - "3.12"
           - "3.13"
     steps:
       - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
 
       - name: Install python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
@@ -31,12 +41,13 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip setuptools
           # shellcheck disable=SC2102
-          pip install -e .[test]
+          uv pip install -e .[test]
 
       - name: Test
         run: coverage run -m pytest
+        env:
+          NUCLEI_TOKEN: ${{ secrets.NUCLEI_TOKEN }}
 
       - name: Post coverage results
         uses: coverallsapp/github-action@v2
@@ -64,10 +75,11 @@ jobs:
           fetch-depth: 0
 
       - name: Lint
-        uses: github/super-linter@v5
+        uses: super-linter/super-linter@v8
         env:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: main
+          FILTER_REGEX_EXCLUDE: '.*[tests|marimo]/.*'
 
           VALIDATE_JSCPD: false
           VALIDATE_CSS: false
@@ -91,16 +103,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install python 3.11
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: Install python 3.13
         uses: actions/setup-python@v5
         with:
-          python-version: 3.11
+          python-version: "3.13"
 
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip setuptools
-          pip install -r requirements.txt
-          pip install .
+          uv pip install -r requirements.txt
+          uv pip install .
 
       - name: Build docs
         run: sphinx-build -b html docs public
