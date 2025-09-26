@@ -48,7 +48,7 @@ distro==1.9.0
     # via openai
 docopt==0.6.2
     # via coveralls
-docutils==0.21.2
+docutils==0.22.2
     # via
     #   marimo
     #   sphinx
@@ -78,7 +78,7 @@ imagesize==1.4.1
     # via sphinx
 iniconfig==2.1.0
     # via pytest
-ipython==9.1.0
+ipython==9.5.0
     # via py-cptcore (pyproject.toml)
 ipython-pygments-lexers==1.1.1
     # via ipython
@@ -106,7 +106,7 @@ kiwisolver==1.4.9
     # via matplotlib
 loro==1.8.1
     # via marimo
-marimo==0.14.17
+marimo==0.16.2
     # via py-cptcore (pyproject.toml)
 markdown==3.9
     # via
@@ -168,7 +168,7 @@ pyarrow==21.0.0
     # via polars
 pydantic==2.11.9
     # via openai
-pydantic-core==2.33.2
+pydantic-core==2.39.0
     # via pydantic
 pygments==2.19.2
     # via
@@ -191,7 +191,7 @@ python-dateutil==2.9.0.post0
     #   pandas
 pytz==2025.2
     # via pandas
-pyyaml==6.0.2
+pyyaml==6.0.3
     # via
     #   marimo
     #   pymdown-extensions
@@ -211,7 +211,7 @@ rpds-py==0.27.1
     # via
     #   jsonschema
     #   referencing
-ruff==0.13.1
+ruff==0.13.2
     # via marimo
 six==1.17.0
     # via python-dateutil
@@ -228,7 +228,7 @@ sphinx==8.2.3
     #   sphinx-autodoc-typehints
     #   sphinx-rtd-theme
     #   sphinxcontrib-jquery
-sphinx-autodoc-typehints==3.1.0
+sphinx-autodoc-typehints==3.2.0
     # via py-cptcore (pyproject.toml)
 sphinx-rtd-theme==3.0.2
     # via py-cptcore (pyproject.toml)
@@ -246,7 +246,7 @@ sphinxcontrib-qthelp==2.0.0
     # via sphinx
 sphinxcontrib-serializinghtml==2.0.0
     # via sphinx
-sqlglot==27.17.0
+sqlglot==27.19.0
     # via marimo
 stack-data==0.6.3
     # via ipython
