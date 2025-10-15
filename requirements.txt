@@ -36,7 +36,7 @@ click==8.3.0
     #   uvicorn
 contourpy==1.3.3
     # via matplotlib
-coverage==6.5.0
+coverage==7.11.0
     # via coveralls
 coveralls==3.3.1
     # via py-cptcore (pyproject.toml)
