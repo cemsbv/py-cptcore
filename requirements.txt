@@ -131,7 +131,7 @@ numpy==2.3.3
     #   contourpy
     #   matplotlib
     #   pandas
-openai==1.109.1
+openai==2.5.0
     # via marimo
 orjson==3.11.3
     # via cems-nuclei
