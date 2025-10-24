@@ -164,7 +164,7 @@ ptyprocess==0.7.0
     # via pexpect
 pure-eval==0.2.3
     # via stack-data
-pyarrow==21.0.0
+pyarrow==22.0.0
     # via polars
 pydantic==2.11.9
     # via openai
