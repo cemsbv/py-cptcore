@@ -15,7 +15,7 @@ asteroid-sphinx-theme==0.0.3
     # via py-cptcore (pyproject.toml)
 asttokens==3.0.0
     # via stack-data
-attrs==25.3.0
+attrs==26.1.0
     # via
     #   jsonschema
     #   referencing
