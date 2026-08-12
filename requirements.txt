@@ -23,7 +23,7 @@ babel==2.17.0
     # via sphinx
 cems-nuclei==3.0.1
     # via py-cptcore (pyproject.toml)
-certifi==2025.8.3
+certifi==2026.7.22
     # via
     #   httpcore
     #   httpx
