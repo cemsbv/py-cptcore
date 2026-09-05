@@ -20,13 +20,13 @@ test = ["coveralls", "pytest"]
 docs = [
   "Sphinx==8.2.3",
   "asteroid-sphinx-theme==0.0.3",
-  "ipython==9.1.0",
-  "sphinx-autodoc-typehints==3.1.0",
-  "sphinx_rtd_theme==3.0.2",
+  "ipython==9.17.1",
+  "sphinx-autodoc-typehints==3.13.5",
+  "sphinx_rtd_theme==3.1.0",
 ]
 gui = [
     "marimo[recommended]>0.14,<0.15",
-    "micropip>0.10,<0.11",
+    "micropip>0.11,<0.12",
     "cems-nuclei[client]>3,<4"
 ]
 
