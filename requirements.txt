@@ -74,7 +74,7 @@ idna==3.10
     #   anyio
     #   httpx
     #   requests
-imagesize==1.4.1
+imagesize==2.0.1
     # via sphinx
 iniconfig==2.1.0
     # via pytest
